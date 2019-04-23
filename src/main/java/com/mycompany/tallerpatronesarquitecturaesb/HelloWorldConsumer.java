@@ -33,7 +33,7 @@ public class HelloWorldConsumer implements Runnable, ExceptionListener {
             ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616?jms.useAsyncSend=true");
 
             // Create a Connection
-            Connection connection = connectionFactory.createConnection();
+            Connection connection = connectionFactory.createConnection("smx","smx");
             connection.start();
 
             connection.setExceptionListener((ExceptionListener) this);
@@ -42,7 +42,7 @@ public class HelloWorldConsumer implements Runnable, ExceptionListener {
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
             // Create the destination (Topic or Queue)
-            Destination destination = session.createQueue("TEST.FOO");
+            Destination destination = session.createQueue("events");
 
             // Create a MessageConsumer from the Session to the Topic or Queue
             MessageConsumer consumer = session.createConsumer(destination);

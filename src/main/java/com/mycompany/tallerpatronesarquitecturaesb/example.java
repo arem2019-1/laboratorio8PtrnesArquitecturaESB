@@ -53,6 +53,7 @@ public class example {
                 TextMessage message = session.createTextMessage(text);
  
                 // Tell the producer to send the message
+                System.out.println("Look to a text: "+text);
                 System.out.println("Sent message: "+ message.hashCode() + " : " + Thread.currentThread().getName());
                 producer.send(message);
  
